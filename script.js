@@ -1,22 +1,16 @@
-//难点就是动态添加的东西，无法绑定删除等。
-//循环里有判断时，循环出一个结论，根据结论再判断。
-//9.如何做到循环到新加入的tr？
+//The difficulty is that trs added dynamically cannot be bound.
 
 window.onload = function () {
-  //1.建立一个数据库，把产品信息放入。
+  //1. Create a database and put all products information into it.
   const data = {
     data1: { pname: "Xiaomi 12", price: 649, img: "./image/xiaomi12.webp" },
-    data2: {
-      pname: "Redmi note 11",
-      price: 525,
-      img: "./image/Redmi note 11.webp",
-    },
+    data2: { pname: "Redmi note 11", price: 525, img: "./image/Redmi note 11.webp" },
     data3: { pname: "Xiaomi 11", price: 533, img: "./image/Redmi 11.webp" },
     data4: { pname: "Xiaomi 10C", price: 499, img: "./image/Redmi 10C.webp" },
   };
   /*  console.log(data) */
 
-  //2，点buy进行判断，如果下面有，就弹出；没有，就产生一个新的tr
+  //2. click buy, then judge, if there is one below, it will click increase; if not, it will generate a new tr
   const buys = document.querySelectorAll(".buy");
   const table = document.querySelector("table");
   const tbody = table.children[1];
@@ -66,7 +60,8 @@ window.onload = function () {
         /*  console.log(newTr)
                  console.log(price) */
         tbody.appendChild(newTr);
-        //6.点删除，删除列。 //7.点加号数字增加
+       
+        //6. Click delete to delete tr. //7. Click plus to increase the number
         let dels = document.querySelectorAll(".del");
         let increase2 = document.querySelectorAll(".increase2");
         let decrease2 = document.querySelectorAll(".decrease2");
@@ -166,11 +161,11 @@ window.onload = function () {
       }
     });
   }
-  //3.点谁得到谁的数据，传给对应的tr
-  //4.有一个问题，之前的点击事件遍历的时候，无法遍历到新加入的tr:那就点击的时候再创建tr
-  //5.购物车总计模块
-  //遍历prices2，相加得到总金额
-  //就算总金额的函数
+  
+  //3. Click who gets who's data and pass it to the corresponding tr
+  //4. There is a problem, when the previous click event is in the loop, the newly added tr cannot be in the loop: then create tr when clicking
+  //5. Shopping cart total part
+ 
 
   function calTotal() {
     const price2 = tbody.querySelectorAll(".price2");
@@ -182,7 +177,7 @@ window.onload = function () {
     total.innerHTML = "Total: $" + sum;
   }
 
-  //最后一步：为了让一开始的那一栏得到方法
+ //The last step: in order to get the method for the tr at the beginning
   del.addEventListener("click", function () {
     this.parentNode.parentNode.remove();
     calTotal();
